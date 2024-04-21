@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ifindex version="1.0" xmlns="http://babel.ifarchive.org/protocol/iFiction/">
+    <story>
+        <identification>
+            <ifid>7B5A779B-4653-43DB-A516-F475DDC12987</ifid>
+            <format>glulx</format>
+        </identification>
+        <bibliographic>
+            <title>Counterfeit Monkey</title>
+            <author>Emily Short</author>
+            <headline>A Removal</headline>
+            <genre>Fiction</genre>
+            <firstpublished>2024</firstpublished>
+            <description>Anglophone Atlantis has been an independent nation since an April day in 1822, when a well-aimed shot from their depluralizing cannon reduced the British colonizing fleet to one ship.<br/>Since then, Atlantis has been the world's greatest center for linguistic manipulation, designing letter inserters, word synthesizers, the diminutive affixer, and a host of other tools for converting one thing to another. Inventors worldwide pay heavily for that technology, which is where a smuggler and industrial espionage agent such as yourself can really clean up.<br/>Unfortunately, the Bureau of Orthography has taken a serious interest in your activities lately. Your face has been recorded and your cover is blown.<br/>Your remaining assets: about eight more hours of a national holiday that's spreading the police thin; the most inconvenient damn disguise you've ever worn in your life; and one full-alphabet letter remover.<br/>Good luck getting off the island.</description>
+            <language>en</language>
+            <group>Inform</group>
+        </bibliographic>
+        <resources>
+            <auxiliary>
+                <leafname>Customs-Poster-Big.png</leafname>
+                <description>Customs Poster</description>
+            </auxiliary>
+            <auxiliary>
+                <leafname>DCLbig.png</leafname>
+                <description>DCL Advertisement</description>
+            </auxiliary>
+            <auxiliary>
+                <leafname>Atlantida.png</leafname>
+                <description>Atlantida Poster</description>
+            </auxiliary>
+        </resources>
+        <cover>
+            <format>png</format>
+            <height>900</height>
+            <width>900</width>
+            <description>A collage with a cat, a crumpled 50 euro bill, some secret plans and a city map.</description>
+        </cover>
+        <releases>
+            <attached>
+                <release>
+                    <releasedate>2024-04-07</releasedate>
+                    <version>11</version>
+                    <compiler>Inform 7</compiler>
+                    <compilerversion>6M62</compilerversion>
+                </release>
+            </attached>
+        </releases>
+        <colophon>
+            <generator>Inform 7</generator>
+            <generatorversion>6M62</generatorversion>
+            <originated>2024-04-07</originated>
+        </colophon>
+        <glulx>
+            <serial>240407</serial>
+            <release>11</release>
+            <compiler>Inform 7 build 6M62</compiler>
+            <coverpicture>1</coverpicture>
+        </glulx>
+    </story>
+</ifindex>
