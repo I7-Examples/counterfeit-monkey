@@ -1194,7 +1194,7 @@ There's even a little washing machine, for items too big to hand-wash in the sin
 
 Out-direction of Galley is up. [Back up to navigation area]
 
-A built-in table is scenery in the Galley. It is a supporter. The description is "When the weather is good and there is nothing urgent happening, you all often eat out on the sunning deck, which is more congenial; but at other times you take your meals down here, on this table. The seating is built-in.". Some seating is part of the built-in table. The seating is an enterable supporter. Understand "built-in seating" as the seating.
+A built-in table is scenery in the Galley. It is a supporter. The description is "When the weather is good and there is nothing urgent happening, you all often eat out on the sunning deck, which is more congenial; but at other times you take your meals down here, on this table. The seating is built-in.". Some seating is part of the built-in table. The seating is an enterable supporter. The seating allows seated. Understand "built-in seating" as the seating.
 
 The galley cabinet is a scenery cabinet in the Galley.
 
@@ -1310,6 +1310,14 @@ The expensive laptop is a laptop. The description is "It's Brock's fav[our]ite o
 The expensive laptop is running a password-lock program called Brock's security.
 	The password of Brock's security is "2!ch_nqrx@v".
 
+An input handling rule for Brock's security (this is the fix broken password rule):
+	let N be "[the topic understood]";
+	if N matches the text "2 ch_nqrx@v":
+		carry out the rewarding successful answering activity with Brock's security;
+		rule succeeds;
+	otherwise:
+		abide by the check for correct passwords rule.
+
 The expensive laptop is running a multiple-choice program called Brock-OS.
 	The options table of Brock-OS is the Table of GUI Choices.
 
@@ -1417,6 +1425,9 @@ Every turn when the location is nautical and portholes are in location:
 		say "[one of]Odd patterns of light dance on the ceiling, reflected through the portholes from the water outside.[or]The yacht rolls gently under the influence of an especially strong wave.[or]The waves lap gently against the side of the ship.[or]Just outside the porthole, a seabird is visible resting on the waves; and then it floats on.[or]The wake of what must be quite a large ship raises the [i]True Macaque[/i] and then lowers her again.[as decreasingly likely outcomes]".
 
 Your bed is a yacht bed in your bunk. It is scenery. The description is "Homely but familiar."
+
+Rule for describing the drawer layout of your bed:
+	say "Your bed has two drawers. ";
 
 Some back portholes are portholes. They are in your bunk.
 

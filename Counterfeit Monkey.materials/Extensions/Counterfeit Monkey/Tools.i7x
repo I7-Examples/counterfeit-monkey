@@ -109,36 +109,33 @@ After printing the name of the small knob:
 Sanity-check doing something to the small knob:
 	now the noun is the letter-remover device.
 
-To expand X-remover-string:
-	replace the text " [current setting of the letter-remover]-remover" in player-command-substitute with " letter-remover";
-	replace the regular expression "^[current setting of the letter-remover]-remove " in player-command-substitute with "letter-remove ".
-
-A first command-string altering rule (this is the implicitly change letter-remover setting rule):
+A first before processing a command rule (this is the implicitly change letter-remover setting rule):
 	now the letter-remover is static;
-	let N be player-command-substitute;
-	if N matches the regular expression ".-remove":
-		if N matches the regular expression "(.*) (.)-remover (.)*":
-			replace the regular expression "(.*) (.)-remover (.)*" in N with "\2";
-		otherwise if N matches the regular expression "(.*) (.)-remover":
-			replace the regular expression "(.*) (.)-remover" in N with "\2";
-		otherwise:
-			replace the regular expression "(.)-remove.*" in N with "\1";
+	let C be the substituted form of the player's command;
+	if C matches the regular expression "\b.-remove":
+		let N be "[C]";
+		let pre be "[C]";
+		let post be "[C]";
+		replace the regular expression ".*?\b(.)-remove.*" in N with "\1";
+		replace the regular expression "(.*?)\b.-remove.*" in pre with "\1";
+		replace the regular expression ".*?\b.-remove(.*)" in post with "\1";
+		now C is "[pre]letter-remove[post]";
 		if the current setting of the letter-remover exactly matches the text N:
-			expand X-remover-string;
+			change the text of the player's command to C;
 			make no decision;
 		if the number of characters in N is greater than 1:
 			make no decision;
+		unless N matches the regular expression "<a-z>":
+			say "Only the 26 letters of the English alphabet are available to the letter-remover.";
+			reject the player's command;
 		if the letter-remover is in a closed backpack:
 			silently try opening the backpack;
 			if the backpack is closed:
-				parsing fails;
+				reject the player's command;
 		if the player can touch the letter-remover:
-			unless N matches the regular expression "<a-z>":
-				say "Only the 26 letters of the English alphabet are available to the letter-remover.";
-				parsing fails;
 			now the current setting of the letter-remover is N;
 			now the letter-remover is changing;
-			expand X-remover-string;
+			change the text of the player's command to C;
 		otherwise:
 			say "[run paragraph on]";
 
@@ -163,7 +160,26 @@ Check vaguely setting:
 Instead of vaguely setting the letter-remover:
 	say "You have to set it to a specific letter, as in SET [letter-remover] TO X."
 
-Understand "set [letter-remover device] to [text]" or "tune [letter-remover device] to [text]" or "turn [letter-remover device] to [text]" as tuning it to. [Understand "set [something] to [text]" as tuning it to.] Tuning it to is an action applying to one carried thing and one topic.
+Understand "set [something] to" as objectlessly setting. Objectlessly setting is an action applying to one thing.
+
+Check objectlessly setting:
+	say "I don't understand what to set [the noun] to." instead.
+
+Instead of objectlessly setting the letter-remover:
+	say "Only the 26 letters of the English alphabet are available to the letter-remover."
+
+Include (-
+[ WORD_TOKEN ;
+	if(NextWordStopped() == -1) return GPR_FAIL;
+	consult_from = wn-1;
+	consult_words = 1;
+	return GPR_PREPOSITION;
+];
+-).
+
+The Understand token word translates into I6 as "WORD_TOKEN".
+
+Understand "set [letter-remover device] to [word]" or "tune [letter-remover device] to [word]" or "turn [letter-remover device] to [word]" as tuning it to. [Understand "set [something] to [word]" as tuning it to.] Tuning it to is an action applying to one carried thing and one topic.
 
 Check tuning it to:
 	if the noun is not the letter-remover device, say "[The noun] cannot be tuned." instead.
@@ -179,8 +195,9 @@ Check tuning it to:
 Carry out tuning it to:
 	now the current setting of the letter-remover device is the topic understood.
 
+
 Report tuning it to:
-	say "You flick our thumb over the small knob: [we] now have [a-an letter-remover device]."
+	say "[We] flick our thumb over the small knob: [we] now have [a-an letter-remover device]."
 
 Report tuning the letter-remover to something for the third time:
 	say "[first custom style][bracket]You can also tune the device just by using another name for it: referring to the device as, for instance, an N-remover will automatically set it to n.[close bracket][roman type][paragraph break]"
@@ -650,7 +667,7 @@ Test it-construction with "autoupgrade / wave a-remover at pita / wave p-remover
 
 Chapter 4 - The Synthesizer
 
-The plexiglas case is a thing in the Language Studies Seminar Room. It is enterable, transparent, closed, openable, lockable, and locked. It is fixed in place. The initial appearance is "A massive plexiglas case takes up one corner of the room." The description is "The case is made of very thick protective plastic on a metal frame[if the screws are part of the plexiglas case and the plexiglas case is lockable]. It is thoroughly locked shut; I don't think [we][']ll have any luck with normal forms of approach. However, plexiglas is a cuttable substance with the right tools, and then there are the screws at the back[otherwise if the plexiglas case is not lockable]. The lid has been compromised by a saw, and the case is now permanenty open[end if]."
+The plexiglas case is a thing in the Language Studies Seminar Room. It is enterable, transparent, closed, openable, lockable, and locked. It is fixed in place. The initial appearance is "A massive plexiglas case takes up one corner of the room." The description is "The case is made of very thick protective plastic on a metal frame[if the screws are part of the plexiglas case and the plexiglas case is lockable]. It is thoroughly locked shut; I don't think [we][']ll have any luck with normal forms of approach. However, plexiglas is a cuttable substance with the right tools, and then there are the screws at the back[otherwise if the plexiglas case is not lockable]. The lid has been compromised by a saw, and the case is now permanently open[end if]."
 
 Test plexibug with "tutorial off / get plexiglas" in the Language Studies Seminar Room.
 
@@ -1218,6 +1235,33 @@ But I have to say, you were right: the scope neither beeps nor blatts. [The acto
 
 First carry out looking at the inscription through an authentication scope:
 	say "[The second noun] begins to whirr and whirr, as though something inside has caught in an unresolvable loop. After a very long time, it whirrs down again without any noise of rejection or acceptance." instead.
+
+Report switching on a computer (this is the new computers make a noise on starting rule):
+	say "[The startup noise of the noun][paragraph break]" (A);
+	let target screen be a random screen that is part of the noun;
+	let player-wears-monocle be false;
+	if the player is wearing the monocle:
+		now player-wears-monocle is true;
+		now the player carries the monocle;
+	try examining the target screen;
+	if player-wears-monocle is true:
+		now the player wears the monocle;
+	stop the action.
+
+The new computers make a noise on starting rule is listed instead of the computers make a noise on starting rule in the report switching on rulebook.
+
+After examining a switched on computer (this is the new report software when examining a functioning computer rule):
+	let target screen be a random screen that is part of the noun;
+	let player-wears-monocle be false;
+	if the player is wearing the monocle:
+		now player-wears-monocle is true;
+		now the player carries the monocle;
+	try examining the target screen;
+	if player-wears-monocle is true:
+		now the player wears the monocle;
+		continue the action.
+
+The new report software when examining a functioning computer rule is listed instead of the report software when examining a functioning computer rule in the after rulebook.
 
 Chapter 8 - The Origin Paste
 

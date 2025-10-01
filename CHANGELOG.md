@@ -5,18 +5,23 @@
 ### Bugs fixed
 
 - Search engine descriptions were not shown for the e-book reader and the secretary's computer. (@Roachbones)
-- The sun wasn't distant but behaved as if sitting right next to you (@Roachbones).
+- The sun did not have the "distant" attribute, but instead behaved as if being touchable. (@Roachbones)
 - With Andra in control, it was possible to get a reprise of Alex's hesitation speech by trying to go back in through the tall window, if you diregarded it the first time when going out. (@Roachbones)
 - Examining the word, the words, or the wordage could cause run-time problems. (@Roachbones)
 - The wordage description was broken since release 7.
 - The start up data embedded in the game file was bad in the two previous releases. The game will now print a warning at startup if it detects bad embedded data. (@hanna-kruppe)
 - Run-time problem P10 would occur when trying to remove letters from the current room. (@eriktorbjorn)
-- Lena would occasionally ask the player to change the modem when it is no longer present. (@eriktorbjorn)
+- Lena would occasionally ask the player to change the modem even though it is no longer present. (@eriktorbjorn)
 - The fast travel GO TO command could be used to bypass the confrontation with Alex's father (@DefKonOne).
 - Typing EXAMINE DIRECTION and then replying with a direction (such as NORTH) to the resulting "Which do you mean" disambiguation question would cause run-time problem P10.
-- Run-time problem P60 would occur when using the soap dispenser after removing all sinks. (@Stealthii)
+- Run-time problem P60 would occur when using the soap dispenser after removing all the sinks. (@Stealthii)
 - Turning on the tap while in a shower or bath would cause run-time problem P43 as the game attempted to move the player out of play. It was also possible to drop any objects in the bath or shower, and then remove them from play by turning on the tap. We fix this by blocking entry into showers and baths. (@Roachbones).
 - The first aid station was not fixed in place and could be picked up, while its description still said it was mounted to the wall. (@lynn)
+- Brock could be turned into a bock, potentially breaking the game. (@Roachbones)
+- It is now possible to sit on the built-in seating in the Galley. (@Roachbones)
+- Creating the scree will once again kill the player. This was changed in release 9, but it turns out the movie screen is assumed to always be in place in too many places in the code. (Mike Russo)
+- The password to Brock's laptop would not be understood if entered verbatim, as the Punctuation Removal extension removes one of the characters. (Mike Russo)
+- The ho would be escorted away with a park-specific message even when she was not created in the park. (@most90)
 
 ### Cosmetic output errors
 
@@ -30,15 +35,27 @@
 - Eliminates many unintended double spaces throughout the output text. (@Roachbones, @lynn)
 - There would in some cases be a missing newline after the "Batman remark" at the end of the roundabout scene. (@eriktorbjorn)
 - There would sometimes be a superfluous "I can't see what you're talking about" message when use of the letter-remover was attempted but disallowed. (@eriktorbjorn)
+- Adds various missing words ("he", "when", and "is", to be precise) to the output text. (Mike Russo)
+- A stray period was printed when exiting the tin hut while the trap door was closing. (Mike Russo)
+- When Brock comments something the player is wearing, it could sometimes be accompanied by a bit of flavor text that would be repeated in the next paragraph. (Mike Russo)
+- Fixes a typo in the description of the synthesizer after sawing it open ("permanenty".) (@dstelzer)
+- Switching on or examining the ebook reader while wearing the monocle would produce some confusing text about examining the Book search engine. Interacting with other computers could produce similar undesired output. (Mike Russo)
+- The message when examining the player's yacht bed would start a sentence with a lower case letter. (Mike Russo)
+- If the player puts something on the u-shaped desk while the printer drawer is open, the room description would output a broken sentence. (@svemoe)
+- Lena would comment on the origin paste even if the player does not have it, when fast-travelling from the Counterfeit Monkey Bar to the Aquarium Bookstore with GO TO BOOKSTORE. (@most90)
+- Many of Lena's quips would not trigger on the same turn as entering the bookstore.
 
 ### Parsing
 
+- Chaining letter-remover commands with THEN now works, as in U-REMOVE MOURNING DRESS THEN WAVE R-REMOVER AT T-SHIRTS, or SET LETTER-REMOVER TO U THEN WAVE IT AT DRESS THEN SET LETTER-REMOVER TO R, thanks to the "Before Processing a Command" extension and other contributions by Daniel Stelzer. (@dstelzer)
 - T INSERTER without a hyphen is now understood as the T-inserter.
 - The T-inserter can now be used by typing INSERT T IN (thing).
 - Things like REMIND MAN THAT MRS. ROSEHIP IS MARRIED would be understood as two different commands separated by a period. Periods after titles are now properly stripped from input.
 - DEMO is now understood as DEMONSTRATION. (@Stealthii)
 - Contractions such as WHAT'S, HE'S, and IT'S are understood. (@Stealthii)
 - Adds more synonyms to the "ask why he is here" quip for the gift shop volunteer. WHY ARE YOU HERE and ASK WHY HE IS THERE now work.
+- Going DOWN when standing on the tarpaulin-covered masses in the tin hut will no longer make the player try to enter the trap door. (Mike Russo)
+- ASK WHETHER BROCK SEEMED UPSET would not be understood when the current memory is "how it started with Brock". (@most90)
 
 ## Release 11
 
